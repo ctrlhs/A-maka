@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Tajawal', 'Cairo', system-ui, -apple-system, sans-serif;
+  }
+
+  body {
+    background-color: #fcfaf6;
+    color: #1a2e26;
+    overflow-x: hidden;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f1ede4;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #c59b27;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #0f3d30;
+  }
+}
+
+/* Islamic pattern background generator */
+.islamic-pattern {
+  background-color: #0c3227;
+  background-image: radial-gradient(#d4af37 0.75px, transparent 0.75px), radial-gradient(#d4af37 0.75px, #0c3227 0.75px);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+  background-opacity: 0.05;
+}
+
+.light-pattern {
+  background-color: #fbf9f4;
+  background-image: radial-gradient(#c59b27 0.5px, transparent 0.5px);
+  background-size: 24px 24px;
+}

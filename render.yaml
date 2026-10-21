@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: maka-umrah-seerah
+    runtime: node
+    plan: free
+    region: frankfurt # أو oregon / ohio
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: GEMINI_API_KEY
+        sync: false # سيطلب منك Render إدخال المفتاح في لوحة التحكم
+      - key: GEMINI_MODEL
+        value: gemini-3.5-flash-lite
