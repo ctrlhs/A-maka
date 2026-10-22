@@ -110,7 +110,7 @@ export const LANDMARKS: LandmarkItem[] = [
     city: 'مكة المكرمة',
     category: 'مهبط الوحي الأول',
     description: 'الجبل التاريخي الذي كان يتعبد فيه النبي ﷺ وفيه نزل عليه أمين الوحي جبريل عليه السلام بأول آيات القرآن الكريم.',
-    image: 'https://images.unsplash.com/photo-1564769625905-50e93615e769?q=80&w=1200&auto=format&fit=crop',
+    image: '/images/landmarks/mount-nour.jpg',
   },
   {
     id: 'holy-sites',
