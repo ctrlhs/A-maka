@@ -102,7 +102,7 @@ export const LANDMARKS: LandmarkItem[] = [
     city: 'مكة المكرمة',
     category: 'أقدس بقاع الأرض',
     description: 'قبلة المسلمين، حيث الطواف حول الكعبة المشرفة، والسعي بين الصفا والمروة، وزمزم، والصلوات في الحرم.',
-    image: 'https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?q=80&w=1200&auto=format&fit=crop',
+    image: '/images/landmarks/al-masjid-al-haram.jpg',
   },
   {
     id: 'mount-nour',

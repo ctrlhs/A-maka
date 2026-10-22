@@ -81,7 +81,7 @@ export const LandmarksSection: React.FC = () => {
                         onError={(e) => {
                           // Fallback to Kaaba photo
                           (e.currentTarget as HTMLImageElement).src =
-                            'https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?q=80&w=1200&auto=format&fit=crop';
+                            '/images/landmarks/al-masjid-al-haram.jpg';
                         }}
                       />
                       <div className="absolute top-3 right-3 bg-white/90 px-2.5 py-1 rounded-md text-xs font-bold text-[#0c3227]">
