@@ -20,6 +20,14 @@ export function App() {
   const [selectedRoute, setSelectedRoute] = useState('مسار رحلة العمرة من أسوان إلى المملكة (15 يومًا)');
   const [selectedPackage, setSelectedPackage] = useState('باقة تشمل الوجبات');
 
+  // Ensure the page always opens from the very top on load
+  useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, []);
+
   // Track active section on scroll
   useEffect(() => {
     const handleScroll = () => {
