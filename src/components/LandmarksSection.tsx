@@ -136,7 +136,7 @@ export const LandmarksSection: React.FC = () => {
                         loading="lazy"
                         onError={(e) => {
                           (e.currentTarget as HTMLImageElement).src =
-                            'https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1200&auto=format&fit=crop';
+                            '/images/landmarks/al-masjid-an-nabawi.jpg';
                         }}
                       />
                       <div className="absolute top-3 right-3 bg-white/90 px-2.5 py-1 rounded-md text-xs font-bold text-[#0c3227]">

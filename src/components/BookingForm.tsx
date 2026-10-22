@@ -414,24 +414,6 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                 </div>
               </div>
             </div>
-
-            {/* Message Preview */}
-            <div className="bg-white rounded-2xl p-4 border border-[#ded5c2]">
-              <div className="text-xs font-bold text-[#0c3227] mb-2 pb-1.5 border-b border-[#eee8dc]">
-                معاينة رسالة واتساب:
-              </div>
-              <div className="bg-[#fcfaf5] p-3 rounded-lg border border-[#ece4d3] text-[11px] text-[#2c3c34] font-mono leading-relaxed whitespace-pre-line text-right">
-                {`السلام عليكم أستاذة أسماء عبدالكريم، أرغب في الاستفسار عن رحلة عمرة لمدة 15 يومًا من أسوان.
-
-الاسم: ${formData.fullName.trim() || '[اسم العميل]'}
-رقم الهاتف: ${formData.phone.trim() || '[رقم العميل]'}
-خط السير: انطلاق من أسوان (15 يومًا)
-الباقة: ${formData.packageType}
-الوجبات: ${formData.meals}${formData.travelDate ? `\nموعد السفر: ${formData.travelDate}` : ''}${formData.travelersCount ? `\nعدد المسافرين: ${formData.travelersCount}` : ''}${formData.notes ? `\nملاحظات: ${formData.notes.trim()}` : ''}
-
-أرجو إرسال تفاصيل الرحلة والسعر والخدمات المشمولة. شكرًا لكم.`}
-              </div>
-            </div>
           </div>
         </div>
       </div>
