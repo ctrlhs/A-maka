@@ -118,7 +118,7 @@ export const LANDMARKS: LandmarkItem[] = [
     city: 'مكة المكرمة',
     category: 'معالم ومشاعر مباركة',
     description: 'جولة تعريفية بمعالم المشاعر المقدسة وجبل الرحمة في عرفات، ومزدلفة، ومنى.',
-    image: '/images/landmarks/holy-sites.jpg',
+    image: 'https://images.unsplash.com/photo-1565552645632-d725f8bfc19a?q=80&w=1200&auto=format&fit=crop',
   },
   // المدينة المنورة
   {
