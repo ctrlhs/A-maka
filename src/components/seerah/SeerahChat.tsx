@@ -1,15 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
 import {
-  Send,
-  Sparkles,
-  RotateCcw,
+  PaperPlaneTilt,
+  ArrowClockwise,
   BookOpen,
-  AlertCircle,
-  Loader2,
-  Bot,
+  WarningCircle,
+  CircleNotch,
   User,
-  Quote,
-} from 'lucide-react';
+  ChatCircleDots,
+} from '@phosphor-icons/react';
 import type { ChatMessage } from '../../types/seerah';
 import { SUGGESTED_QUESTIONS } from '../../data/seerahData';
 
@@ -26,11 +24,11 @@ export const SeerahChat: React.FC<SeerahChatProps> = ({
     {
       id: 'welcome',
       sender: 'assistant',
-      text: `السلام عليكم ورحمة الله وبركاته، مرحباً بكم في «مرشد السيرة النبوية».
+      text: `السلام عليكم ورحمة الله وبركاته، أهلاً بكم في «مرشد السيرة النبوية».
 
-أنا مرشدكم المعرفي والتاريخي لاستكشاف حياة الحبيب المصطفى محمد ﷺ، وأحداث النبوة العطرة، والأماكن المباركة التي شهدت نزول الوحي وانطلاق رسالة الإسلام الخالدة.
+يسعدني إرشادكم والتعريف بأحداث السيرة النبوية العطرة، وحياة النبي محمد ﷺ، ومعالم مكة المكرمة والمدينة المنورة المرتبطة بنزول الوحي وانطلاق رسالة الإسلام.
 
-تعتمد إجاباتي على القرآن الكريم، والأحاديث الصحيحة من صحيحي البخاري ومسلم، والمراجع المعتمدة كـ «سيرة ابن هشام» و«الرحيق المختوم». تفضل بطرح أي سؤال أو اختر من الأسئلة المقترحة أدناه.`,
+تعتمد الإجابات على القرآن الكريم، وصحيحي البخاري ومسلم، وأمهات كتب السيرة المعتمدة كـ «سيرة ابن هشام» و«الرحيق المختوم». تفضل بطرح سؤالك أو اختر أحد الأسئلة المقترحة.`,
       timestamp: new Date().toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' }),
     },
   ]);
@@ -41,12 +39,10 @@ export const SeerahChat: React.FC<SeerahChatProps> = ({
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
-  // Auto-scroll to bottom of chat
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, isLoading]);
 
-  // Handle external initial question (e.g. from places card)
   useEffect(() => {
     if (initialQuestion && initialQuestion.trim() !== '') {
       handleSendMessage(initialQuestion.trim());
@@ -74,7 +70,6 @@ export const SeerahChat: React.FC<SeerahChatProps> = ({
     setIsLoading(true);
 
     try {
-      // Build history for API
       const historyPayload = messages
         .filter((m) => m.id !== 'welcome')
         .map((m) => ({
@@ -111,7 +106,7 @@ export const SeerahChat: React.FC<SeerahChatProps> = ({
     } catch (err: any) {
       console.error('Chat error:', err);
       setErrorMessage(
-        err.message || 'تعذر الاتصال بمرشد السيرة حالياً. يرجى التأكد من الاتصال والمحاولة ثانية.'
+        err.message || 'تعذر الاتصال بالمرشد حالياً. يرجى التحقق من الاتصال والمحاولة ثانية.'
       );
     } finally {
       setIsLoading(false);
@@ -130,41 +125,36 @@ export const SeerahChat: React.FC<SeerahChatProps> = ({
       {
         id: 'welcome',
         sender: 'assistant',
-        text: 'تم بدء محادثة جديدة. تفضل بسؤالك حول أحداث السيرة النبوية العطرة أو الأماكن التاريخية المرتبطة بها.',
+        text: 'تم بدء محادثة جديدة. تفضل بسؤالك حول أحداث السيرة النبوية أو الأماكن التاريخية المرتبطة بها.',
         timestamp: new Date().toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' }),
       },
     ]);
     setErrorMessage(null);
   };
 
-  // Helper to format text with Quranic verses and bold highlights
   const renderFormattedText = (text: string) => {
     const lines = text.split('\n');
     return lines.map((line, index) => {
       const trimmed = line.trim();
 
-      // Check if line is a header
       if (trimmed.startsWith('### ') || trimmed.startsWith('## ') || trimmed.startsWith('# ')) {
         const headerText = trimmed.replace(/^#+\s*/, '');
         return (
-          <h4 key={index} className="text-base font-black text-[#0c3227] mt-3 mb-1.5 flex items-center gap-1.5">
-            <span className="text-[#c59b27]">✦</span>
-            <span>{headerText}</span>
+          <h4 key={index} className="text-sm sm:text-base font-bold text-[#0c3227] mt-3 mb-1.5">
+            {headerText}
           </h4>
         );
       }
 
-      // Check if line is Sources section
       if (trimmed.startsWith('المصادر والمراجع') || trimmed.startsWith('المراجع المعتمدة')) {
         return (
-          <div key={index} className="mt-4 pt-3 border-t border-[#e8dfce] text-xs font-bold text-[#8d6919] flex items-center gap-1.5">
-            <BookOpen className="w-4 h-4 text-[#c59b27]" />
+          <div key={index} className="mt-3 pt-2.5 border-t border-[#e8dfce] text-xs font-bold text-[#8d6919] flex items-center gap-1.5">
+            <BookOpen size={16} className="text-[#c59b27]" />
             <span>{trimmed}</span>
           </div>
         );
       }
 
-      // Bullet points
       if (trimmed.startsWith('- ') || trimmed.startsWith('* ') || trimmed.startsWith('• ')) {
         const bulletText = trimmed.replace(/^[-*•]\s*/, '');
         return (
@@ -175,12 +165,10 @@ export const SeerahChat: React.FC<SeerahChatProps> = ({
         );
       }
 
-      // Empty line
       if (trimmed === '') {
-        return <div key={index} className="h-2" />;
+        return <div key={index} className="h-1.5" />;
       }
 
-      // Normal paragraph
       return (
         <p key={index} className="text-xs sm:text-sm text-[#26372f] leading-relaxed my-1">
           {renderInlineFormatting(line)}
@@ -189,9 +177,7 @@ export const SeerahChat: React.FC<SeerahChatProps> = ({
     });
   };
 
-  // Helper for inline bold, verses, ﷺ
   const renderInlineFormatting = (text: string) => {
-    // Replace markdown bold **word**
     const parts = text.split(/(\*\*.*?\*\*|﴿.*?﴾)/g);
     return parts.map((part, i) => {
       if (part.startsWith('**') && part.endsWith('**')) {
@@ -213,22 +199,17 @@ export const SeerahChat: React.FC<SeerahChatProps> = ({
   };
 
   return (
-    <div className="bg-white rounded-2xl border border-[#ded5c2] shadow-xl overflow-hidden flex flex-col h-[650px] sm:h-[720px]" dir="rtl">
+    <div className="bg-white rounded-2xl border border-[#ded5c2] shadow-sm overflow-hidden flex flex-col h-[560px] sm:h-[620px]" dir="rtl">
       {/* Chat Window Header */}
-      <div className="p-4 sm:p-5 bg-gradient-to-r from-[#0c3227] to-[#144838] text-white flex items-center justify-between border-b border-[#215a48]">
+      <div className="p-4 bg-[#0c3227] text-white flex items-center justify-between border-b border-[#215a48]">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-[#d4af37]/20 border border-[#d4af37]/40 flex items-center justify-center text-[#f5d77f]">
-            <Bot className="w-5 h-5" />
+          <div className="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center text-[#f5d77f]">
+            <ChatCircleDots size={20} weight="bold" />
           </div>
           <div>
-            <div className="flex items-center gap-2">
-              <h3 className="text-sm sm:text-base font-bold text-white">
-                مرشد السيرة النبوية الذكي
-              </h3>
-              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#1d5c48] text-[#f5d77f] border border-[#d4af37]/30">
-                Gemini AI
-              </span>
-            </div>
+            <h3 className="text-sm sm:text-base font-bold text-white">
+              مرشد السيرة النبوية
+            </h3>
             <p className="text-[11px] text-[#b8ccc4]">
               إجابات موثقة بالقرآن الكريم والأحاديث الصحيحة والمراجع المعتمدة
             </p>
@@ -237,27 +218,26 @@ export const SeerahChat: React.FC<SeerahChatProps> = ({
 
         <button
           onClick={handleClearChat}
-          className="p-2 text-[#b8ccc4] hover:text-white hover:bg-white/10 rounded-lg transition-colors flex items-center gap-1 text-xs"
+          className="p-1.5 text-[#b8ccc4] hover:text-white hover:bg-white/10 rounded-lg transition-colors flex items-center gap-1 text-xs"
           title="بدء محادثة جديدة"
         >
-          <RotateCcw className="w-4 h-4" />
+          <ArrowClockwise size={16} />
           <span className="hidden sm:inline">محادثة جديدة</span>
         </button>
       </div>
 
       {/* Suggested Questions Ribbon */}
-      <div className="p-3 bg-[#fbf9f4] border-b border-[#eee8dc] overflow-x-auto whitespace-nowrap scrollbar-thin">
-        <div className="flex items-center gap-2">
-          <span className="text-[11px] font-bold text-[#8d6919] flex items-center gap-1 flex-shrink-0">
-            <Sparkles className="w-3.5 h-3.5 text-[#c59b27]" />
-            <span>أسئلة مقترحة:</span>
+      <div className="p-2.5 bg-[#fbf9f4] border-b border-[#eee8dc] overflow-x-auto whitespace-nowrap scrollbar-thin">
+        <div className="flex items-center gap-1.5">
+          <span className="text-[11px] font-bold text-[#8d6919] flex-shrink-0 ml-1">
+            أسئلة مقترحة:
           </span>
           {SUGGESTED_QUESTIONS.map((q, idx) => (
             <button
               key={idx}
               onClick={() => handleSendMessage(q)}
               disabled={isLoading}
-              className="px-3 py-1.5 rounded-full bg-white hover:bg-[#0c3227] hover:text-white text-[#3c4c44] border border-[#dcd3c0] text-xs font-semibold transition-all shadow-xs flex-shrink-0 active:scale-95 disabled:opacity-50"
+              className="px-2.5 py-1 rounded-lg bg-white hover:bg-[#0c3227] hover:text-white text-[#3c4c44] border border-[#dcd3c0] text-xs transition-all flex-shrink-0 disabled:opacity-50"
             >
               {q}
             </button>
@@ -266,34 +246,31 @@ export const SeerahChat: React.FC<SeerahChatProps> = ({
       </div>
 
       {/* Chat Messages Body */}
-      <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-5 bg-[#faf7f0]">
+      <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4 bg-[#faf7f0]">
         {messages.map((msg) => {
           const isUser = msg.sender === 'user';
           return (
             <div
               key={msg.id}
-              className={`flex items-start gap-3 ${isUser ? 'flex-row-reverse' : 'flex-row'}`}
+              className={`flex items-start gap-2.5 ${isUser ? 'flex-row-reverse' : 'flex-row'}`}
             >
-              {/* Avatar */}
               <div
-                className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm ${
+                className={`w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 text-xs ${
                   isUser
                     ? 'bg-[#c59b27] text-[#0c3227]'
-                    : 'bg-[#0c3227] text-white border border-[#215a48]'
+                    : 'bg-[#0c3227] text-white'
                 }`}
               >
-                {isUser ? <User className="w-4 h-4" /> : <Bot className="w-4 h-4 text-[#e5c158]" />}
+                {isUser ? <User size={14} weight="bold" /> : <ChatCircleDots size={14} weight="bold" />}
               </div>
 
-              {/* Message Bubble */}
               <div
-                className={`max-w-[85%] sm:max-w-[78%] rounded-2xl p-4 sm:p-5 shadow-sm text-right ${
+                className={`max-w-[85%] sm:max-w-[78%] rounded-xl p-3.5 sm:p-4 text-right ${
                   isUser
                     ? 'bg-[#0c3227] text-white rounded-tl-none'
-                    : 'bg-white text-[#1a2e26] border border-[#e2d8c5] rounded-tr-none'
+                    : 'bg-white text-[#1a2e26] border border-[#e2d8c5] rounded-tr-none shadow-xs'
                 }`}
               >
-                {/* Text Content */}
                 <div className="leading-relaxed whitespace-pre-wrap">
                   {isUser ? (
                     <p className="text-xs sm:text-sm text-white font-medium">{msg.text}</p>
@@ -302,9 +279,8 @@ export const SeerahChat: React.FC<SeerahChatProps> = ({
                   )}
                 </div>
 
-                {/* Timestamp */}
                 <div
-                  className={`mt-2 text-[10px] ${
+                  className={`mt-1.5 text-[10px] ${
                     isUser ? 'text-[#b8ccc4] text-left' : 'text-[#8b9991] text-left'
                   }`}
                 >
@@ -315,25 +291,23 @@ export const SeerahChat: React.FC<SeerahChatProps> = ({
           );
         })}
 
-        {/* Loading Indicator */}
         {isLoading && (
-          <div className="flex items-start gap-3">
-            <div className="w-8 h-8 rounded-full bg-[#0c3227] text-white flex items-center justify-center flex-shrink-0">
-              <Bot className="w-4 h-4 text-[#e5c158]" />
+          <div className="flex items-start gap-2.5">
+            <div className="w-7 h-7 rounded-full bg-[#0c3227] text-white flex items-center justify-center flex-shrink-0">
+              <ChatCircleDots size={14} weight="bold" />
             </div>
-            <div className="bg-white rounded-2xl rounded-tr-none p-4 border border-[#e2d8c5] shadow-sm flex items-center gap-3 text-xs text-[#0c3227] font-semibold">
-              <Loader2 className="w-4 h-4 animate-spin text-[#c59b27]" />
-              <span>مرشد السيرة يستحضر الإجابة من المصادر والمراجع المعتمدة...</span>
+            <div className="bg-white rounded-xl rounded-tr-none p-3.5 border border-[#e2d8c5] flex items-center gap-2.5 text-xs text-[#0c3227] font-semibold">
+              <CircleNotch size={16} className="animate-spin text-[#c59b27]" />
+              <span>جاري استحضار الإجابة من المصادر المعتمدة...</span>
             </div>
           </div>
         )}
 
-        {/* Error Notification */}
         {errorMessage && (
-          <div className="p-4 bg-red-50 border border-red-200 rounded-xl flex items-center gap-3 text-xs text-red-800">
-            <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0" />
+          <div className="p-3 bg-red-50 border border-red-200 rounded-xl flex items-center gap-2.5 text-xs text-red-800">
+            <WarningCircle size={18} className="text-red-600 flex-shrink-0" />
             <div className="flex-1">
-              <p className="font-bold">تنبيه أثناء الاتصال:</p>
+              <p className="font-bold">تنبيه:</p>
               <p className="mt-0.5">{errorMessage}</p>
             </div>
           </div>
@@ -343,39 +317,36 @@ export const SeerahChat: React.FC<SeerahChatProps> = ({
       </div>
 
       {/* Input Box Bar */}
-      <div className="p-3 sm:p-4 bg-white border-t border-[#eee8dc]">
+      <div className="p-3 sm:p-3.5 bg-white border-t border-[#eee8dc]">
         <div className="flex items-center gap-2">
           <textarea
             ref={inputRef}
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="اكتب سؤالك هنا عن السيرة النبوية (مثال: ما هي معجزات الهجرة؟ أو صف لي غار حراء...)"
+            placeholder="اكتب سؤالك هنا عن السيرة النبوية أو الأماكن التاريخية..."
             rows={1}
             disabled={isLoading}
-            className="flex-1 py-3 px-4 text-xs sm:text-sm bg-[#faf7f0] border border-[#d8cfbe] rounded-xl focus:outline-none focus:border-[#0c3227] focus:bg-white resize-none text-right transition-all max-h-32"
+            className="flex-1 py-2.5 px-3.5 text-xs sm:text-sm bg-[#faf7f0] border border-[#d8cfbe] rounded-xl focus:outline-none focus:border-[#0c3227] focus:bg-white resize-none text-right transition-all max-h-28"
           />
 
           <button
             onClick={() => handleSendMessage()}
             disabled={!input.trim() || isLoading}
-            className="w-12 h-12 rounded-xl bg-gradient-to-l from-[#d4af37] to-[#c59b27] hover:from-[#c59b27] hover:to-[#b3881e] text-[#0c3227] font-bold flex items-center justify-center transition-all disabled:opacity-40 disabled:cursor-not-allowed shadow-md active:scale-95 flex-shrink-0"
+            className="w-10 h-10 rounded-xl bg-[#0c3227] hover:bg-[#07241c] text-white font-bold flex items-center justify-center transition-all disabled:opacity-40 disabled:cursor-not-allowed flex-shrink-0"
             aria-label="إرسال السؤال"
           >
             {isLoading ? (
-              <Loader2 className="w-5 h-5 animate-spin" />
+              <CircleNotch size={18} className="animate-spin" />
             ) : (
-              <Send className="w-5 h-5 transform -rotate-180" />
+              <PaperPlaneTilt size={18} weight="bold" className="transform -rotate-90" />
             )}
           </button>
         </div>
 
-        <div className="flex items-center justify-between text-[11px] text-[#808d85] mt-2 px-1">
+        <div className="flex items-center justify-between text-[11px] text-[#808d85] mt-1.5 px-1">
           <span>اضغط Enter للإرسال • Shift+Enter لسطر جديد</span>
-          <span className="flex items-center gap-1 text-[#8d6919]">
-            <Quote className="w-3 h-3 text-[#c59b27]" />
-            <span>مدعوم بـ Google Gemini API الرسمي</span>
-          </span>
+          <span className="text-[#8d6919]">إجابات موثقة وفق الروايات المعتمدة</span>
         </div>
       </div>
     </div>

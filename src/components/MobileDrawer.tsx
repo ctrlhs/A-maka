@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Search, ChevronLeft, Globe } from 'lucide-react';
+import { X, MagnifyingGlass, CaretLeft, Globe, ArrowLeft, WhatsappLogo } from '@phosphor-icons/react';
 import { KaabaLogo } from './KaabaLogo';
 import { SITE_CONFIG, buildQuickWhatsAppUrl } from '../data/content';
 
@@ -21,12 +21,12 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
 
   const menuItems = [
     { id: 'packages', label: 'باقات العمرة' },
-    { id: 'routes', label: 'مسارات الرحلات' },
-    { id: 'itinerary', label: 'برنامج 15 يومًا' },
-    { id: 'seerah-guide', label: 'مرشد السيرة النبوية (AI) ✨' },
-    { id: 'landmarks', label: 'معالم ومزارات' },
+    { id: 'routes', label: 'مسار الرحلة من أسوان' },
+    { id: 'landmarks', label: 'المزارات والمعالم التاريخية' },
+    { id: 'features', label: 'مميزات الرحلة' },
+    { id: 'seerah-guide', label: 'مرشد السيرة النبوية' },
     { id: 'guide', label: 'دليل المعتمر' },
-    { id: 'booking', label: 'استفسار واتساب' },
+    { id: 'booking', label: 'حجز واستفسار' },
     { id: 'contact', label: 'التواصل' },
   ];
 
@@ -49,7 +49,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
     <div className="fixed inset-0 z-50 flex justify-end">
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
+        className="fixed inset-0 bg-black/60 backdrop-blur-xs transition-opacity"
         onClick={onClose}
         aria-hidden="true"
       />
@@ -67,7 +67,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
               className="p-2 text-[#4a5550] hover:text-[#0c3227] hover:bg-[#f6f2e8] rounded-full transition-colors"
               aria-label="إغلاق القائمة"
             >
-              <X className="w-5 h-5" />
+              <X size={20} weight="bold" />
             </button>
             <KaabaLogo />
           </div>
@@ -82,7 +82,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full py-2.5 pr-10 pl-4 text-sm bg-white border border-[#d9d2c2] rounded-lg focus:outline-none focus:border-[#0c3227] focus:ring-1 focus:ring-[#0c3227] text-right placeholder-[#808d85] transition-all"
               />
-              <Search className="w-4 h-4 text-[#808d85] absolute right-3.5 top-1/2 -translate-y-1/2" />
+              <MagnifyingGlass size={16} className="text-[#808d85] absolute right-3.5 top-1/2 -translate-y-1/2" />
             </div>
           </div>
 
@@ -106,7 +106,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
                   )}
 
                   <span className="pr-1">{item.label}</span>
-                  <ChevronLeft className="w-4 h-4 text-[#808d85]" />
+                  <CaretLeft size={16} className="text-[#808d85]" />
                 </button>
               );
             })}
@@ -118,7 +118,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
           {/* Language Switcher */}
           <div className="px-4 flex items-center justify-between gap-3">
             <div className="flex items-center gap-1.5 text-xs text-[#6e7b74]">
-              <Globe className="w-4 h-4 text-[#b3881e]" />
+              <Globe size={18} className="text-[#b3881e]" />
             </div>
             <div className="flex items-center gap-2 flex-1 justify-end">
               <button
@@ -154,10 +154,11 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
 
           <button
             onClick={handleWhatsAppClick}
-            className="w-full py-3 px-4 bg-[#d8b168] hover:bg-[#c9a050] text-[#0f2920] font-bold rounded-lg shadow-sm flex items-center justify-center gap-2 transition-all active:scale-[0.98]"
+            className="w-full py-3 px-4 bg-[#d8b168] hover:bg-[#c9a050] text-[#0f2920] font-bold rounded-lg shadow-xs flex items-center justify-center gap-2 transition-all active:scale-[0.98]"
           >
+            <WhatsappLogo size={18} weight="fill" />
             <span>استفسار واتساب</span>
-            <span className="text-lg">←</span>
+            <ArrowLeft size={16} weight="bold" />
           </button>
 
           <div className="text-center text-[10px] text-[#6b7771] leading-relaxed pt-1">

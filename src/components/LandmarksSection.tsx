@@ -1,116 +1,170 @@
 import React, { useState } from 'react';
-import { MapPin, Sparkles } from 'lucide-react';
+import { MapPin } from '@phosphor-icons/react';
 import { LANDMARKS } from '../data/content';
 
 export const LandmarksSection: React.FC = () => {
   const [filterCity, setFilterCity] = useState<'all' | 'مكة المكرمة' | 'المدينة المنورة'>('all');
 
-  const filtered = filterCity === 'all'
-    ? LANDMARKS
-    : LANDMARKS.filter((l) => l.city === filterCity);
+  const makkahLandmarks = LANDMARKS.filter((l) => l.city === 'مكة المكرمة');
+  const madinahLandmarks = LANDMARKS.filter((l) => l.city === 'المدينة المنورة');
 
   return (
-    <section id="landmarks" className="py-16 lg:py-24 bg-[#f4f0e7] relative overflow-hidden" dir="rtl">
+    <section id="landmarks" className="py-16 lg:py-20 bg-[#f4f0e7] relative overflow-hidden" dir="rtl">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#eee7d8] border border-[#dccfb6] text-[#8d6919] text-xs font-bold mb-3">
-            <Sparkles className="w-3.5 h-3.5 text-[#b3881e]" />
-            <span>المزارات والمعالم التاريخية</span>
-          </div>
-
-          <h2 className="text-3xl sm:text-4xl font-black text-[#0c3227] tracking-tight mb-4">
-            معالم وزيارات إيمانية مشمولة بالرحلة
+          <h2 className="text-2xl sm:text-4xl font-black text-[#0c3227] tracking-tight mb-3">
+            المزارات والمعالم التاريخية
           </h2>
-
-          <p className="text-base text-[#4f5d56] leading-relaxed">
-            تشمل رحلتنا جولات ميسرة لزيارة أقدس البقاع والمعالم النبوية والتاريخية في مكة المكرمة وطيبة الطيبة برفقة المشرفة السياحية.
+          <p className="text-sm sm:text-base text-[#4f5d56] leading-relaxed">
+            تشمل رحلتنا زيارات ميدانية لمعالم مكة المكرمة والمدينة المنورة لجميع المشاركين ضمن المجموعة.
           </p>
 
-          {/* Filter Pills */}
+          {/* Group Filter Buttons */}
           <div className="flex items-center justify-center gap-2 mt-6">
             <button
               onClick={() => setFilterCity('all')}
-              className={`px-4 py-2 text-xs font-bold rounded-full transition-all ${
+              className={`px-4 py-2 text-xs font-bold rounded-lg transition-all ${
                 filterCity === 'all'
-                  ? 'bg-[#0c3227] text-white shadow-sm'
+                  ? 'bg-[#0c3227] text-white shadow-xs'
                   : 'bg-white text-[#4a5550] border border-[#d8cfbe] hover:bg-[#ede5d4]'
               }`}
             >
-              جميع المعالم (6)
+              جميع المعالم ({LANDMARKS.length})
             </button>
             <button
               onClick={() => setFilterCity('مكة المكرمة')}
-              className={`px-4 py-2 text-xs font-bold rounded-full transition-all ${
+              className={`px-4 py-2 text-xs font-bold rounded-lg transition-all ${
                 filterCity === 'مكة المكرمة'
-                  ? 'bg-[#0c3227] text-white shadow-sm'
+                  ? 'bg-[#0c3227] text-white shadow-xs'
                   : 'bg-white text-[#4a5550] border border-[#d8cfbe] hover:bg-[#ede5d4]'
               }`}
             >
-              مكة المكرمة
+              مكة المكرمة ({makkahLandmarks.length})
             </button>
             <button
               onClick={() => setFilterCity('المدينة المنورة')}
-              className={`px-4 py-2 text-xs font-bold rounded-full transition-all ${
+              className={`px-4 py-2 text-xs font-bold rounded-lg transition-all ${
                 filterCity === 'المدينة المنورة'
-                  ? 'bg-[#0c3227] text-white shadow-sm'
+                  ? 'bg-[#0c3227] text-white shadow-xs'
                   : 'bg-white text-[#4a5550] border border-[#d8cfbe] hover:bg-[#ede5d4]'
               }`}
             >
-              المدينة المنورة
+              المدينة المنورة ({madinahLandmarks.length})
             </button>
           </div>
         </div>
 
-        {/* Landmarks Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {filtered.map((item) => (
-            <div
-              key={item.id}
-              className="bg-white rounded-2xl overflow-hidden border border-[#ded5c2] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
-            >
-              <div>
-                {/* Image Container */}
-                <div className="relative h-52 sm:h-56 overflow-hidden">
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                  
-                  {/* City Pill */}
-                  <div className="absolute top-3.5 right-3.5 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-[#0c3227] flex items-center gap-1 shadow-sm">
-                    <MapPin className="w-3.5 h-3.5 text-[#b3881e]" />
-                    <span>{item.city}</span>
-                  </div>
-
-                  {/* Category Pill */}
-                  <div className="absolute bottom-3.5 right-3.5 text-white text-xs font-bold drop-shadow-md">
-                    {item.category}
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-5">
-                  <h3 className="text-lg font-black text-[#0c3227] mb-2 leading-snug">
-                    {item.name}
-                  </h3>
-                  <p className="text-xs text-[#526058] leading-relaxed">
-                    {item.description}
-                  </p>
-                </div>
-              </div>
-
-              {/* Bottom Tag */}
-              <div className="px-5 py-3 bg-[#faf7f0] border-t border-[#ede5d4] flex items-center justify-between text-[11px] text-[#788880]">
-                <span>زيارة مشمولة ببرنامج الرحلة</span>
-                <span className="text-[#b3881e] font-bold">مع المشرفة ←</span>
-              </div>
+        {/* Makkah Group */}
+        {(filterCity === 'all' || filterCity === 'مكة المكرمة') && (
+          <div className="mb-12">
+            <div className="flex items-center gap-2 mb-6 border-b border-[#ded5c2] pb-3">
+              <MapPin size={20} className="text-[#b3881e]" />
+              <h3 className="text-lg sm:text-xl font-bold text-[#0c3227]">
+                معالم مكة المكرمة ({makkahLandmarks.length})
+              </h3>
             </div>
-          ))}
-        </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {makkahLandmarks.map((item) => (
+                <div
+                  key={item.id}
+                  className="bg-white rounded-2xl overflow-hidden border border-[#ded5c2] shadow-xs flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="relative h-48 sm:h-52 overflow-hidden bg-[#e8e2d5]">
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                        onError={(e) => {
+                          // Fallback to Kaaba photo
+                          (e.currentTarget as HTMLImageElement).src =
+                            'https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?q=80&w=1200&auto=format&fit=crop';
+                        }}
+                      />
+                      <div className="absolute top-3 right-3 bg-white/90 px-2.5 py-1 rounded-md text-xs font-bold text-[#0c3227]">
+                        {item.city}
+                      </div>
+                    </div>
+
+                    <div className="p-5">
+                      <span className="text-[11px] font-bold text-[#8d6919] block mb-1">
+                        {item.category}
+                      </span>
+                      <h4 className="text-base font-black text-[#0c3227] mb-2 leading-snug">
+                        {item.name}
+                      </h4>
+                      <p className="text-xs text-[#526058] leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="px-5 py-3 bg-[#faf7f0] border-t border-[#ede5d4] text-[11px] text-[#788880] font-medium">
+                    مشمولة ببرنامج الزيارات الجماعية
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Madinah Group */}
+        {(filterCity === 'all' || filterCity === 'المدينة المنورة') && (
+          <div>
+            <div className="flex items-center gap-2 mb-6 border-b border-[#ded5c2] pb-3">
+              <MapPin size={20} className="text-[#b3881e]" />
+              <h3 className="text-lg sm:text-xl font-bold text-[#0c3227]">
+                معالم المدينة المنورة ({madinahLandmarks.length})
+              </h3>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {madinahLandmarks.map((item) => (
+                <div
+                  key={item.id}
+                  className="bg-white rounded-2xl overflow-hidden border border-[#ded5c2] shadow-xs flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="relative h-48 sm:h-52 overflow-hidden bg-[#e8e2d5]">
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                        onError={(e) => {
+                          (e.currentTarget as HTMLImageElement).src =
+                            'https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1200&auto=format&fit=crop';
+                        }}
+                      />
+                      <div className="absolute top-3 right-3 bg-white/90 px-2.5 py-1 rounded-md text-xs font-bold text-[#0c3227]">
+                        {item.city}
+                      </div>
+                    </div>
+
+                    <div className="p-5">
+                      <span className="text-[11px] font-bold text-[#8d6919] block mb-1">
+                        {item.category}
+                      </span>
+                      <h4 className="text-base font-black text-[#0c3227] mb-2 leading-snug">
+                        {item.name}
+                      </h4>
+                      <p className="text-xs text-[#526058] leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="px-5 py-3 bg-[#faf7f0] border-t border-[#ede5d4] text-[11px] text-[#788880] font-medium">
+                    مشمولة ببرنامج الزيارات الجماعية
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

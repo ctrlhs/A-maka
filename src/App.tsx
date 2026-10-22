@@ -7,7 +7,6 @@ import { PackagesSection } from './components/PackagesSection';
 import { RoutesSection } from './components/RoutesSection';
 import { LandmarksSection } from './components/LandmarksSection';
 import { FeaturesSection } from './components/FeaturesSection';
-import { ItinerarySection } from './components/ItinerarySection';
 import { SeerahSection } from './components/seerah/SeerahSection';
 import { PilgrimGuide } from './components/PilgrimGuide';
 import { BookingForm } from './components/BookingForm';
@@ -18,13 +17,13 @@ import type { PackageItem } from './types';
 export function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('packages');
-  const [selectedRoute, setSelectedRoute] = useState('مصر ← المدينة المنورة ← مكة المكرمة');
+  const [selectedRoute, setSelectedRoute] = useState('مسار رحلة العمرة من أسوان إلى المملكة (15 يومًا)');
   const [selectedPackage, setSelectedPackage] = useState('باقة تشمل الوجبات');
 
   // Track active section on scroll
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['packages', 'routes', 'itinerary', 'seerah-guide', 'landmarks', 'features', 'guide', 'booking'];
+      const sections = ['packages', 'routes', 'landmarks', 'features', 'seerah-guide', 'guide', 'booking'];
       const scrollPosition = window.scrollY + 200;
 
       for (const sectionId of sections) {
@@ -75,7 +74,7 @@ export function App() {
         onNavigate={scrollToSection}
       />
 
-      {/* Mobile Drawer (matching screenshots) */}
+      {/* Mobile Drawer */}
       <MobileDrawer
         isOpen={isMobileMenuOpen}
         onClose={() => setIsMobileMenuOpen(false)}
@@ -89,7 +88,7 @@ export function App() {
         <Hero
           onExplorePackages={() => scrollToSection('packages')}
           onBookNow={() => scrollToSection('booking')}
-          onViewItinerary={() => scrollToSection('itinerary')}
+          onViewRoute={() => scrollToSection('routes')}
         />
 
         {/* 2. About Journey */}
@@ -107,16 +106,13 @@ export function App() {
         {/* 6. Why Choose Us / Features */}
         <FeaturesSection />
 
-        {/* 7. 15-Day Itinerary */}
-        <ItinerarySection />
-
-        {/* 8. Seerah Guide (مرشد السيرة النبوية) */}
+        {/* 7. Seerah Guide (مرشد السيرة النبوية) */}
         <SeerahSection />
 
-        {/* 9. Pilgrim Guide & FAQ */}
+        {/* 8. Pilgrim Guide & FAQ */}
         <PilgrimGuide />
 
-        {/* 10. Booking & Inquiry Form */}
+        {/* 9. Booking & Inquiry Form */}
         <BookingForm
           initialRoute={selectedRoute}
           initialPackage={selectedPackage}

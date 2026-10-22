@@ -10,16 +10,6 @@ export interface PackageItem {
   mealsType: string;
 }
 
-export interface RouteItem {
-  id: string;
-  title: string;
-  departure: string;
-  stops: string[];
-  description: string;
-  highlights: string[];
-  recommendedFor: string;
-}
-
 export interface LandmarkItem {
   id: string;
   name: string;
@@ -27,14 +17,6 @@ export interface LandmarkItem {
   image: string;
   description: string;
   category: string;
-}
-
-export interface ItineraryDay {
-  phase: string;
-  days: string;
-  title: string;
-  city: 'مكة المكرمة' | 'المدينة المنورة' | 'السفر والانتقال';
-  activities: string[];
 }
 
 export interface BookingFormData {

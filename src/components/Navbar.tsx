@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, Phone, MessageSquare } from 'lucide-react';
+import { List, PhoneCall, WhatsappLogo } from '@phosphor-icons/react';
 import { KaabaLogo } from './KaabaLogo';
 import { SITE_CONFIG, buildQuickWhatsAppUrl } from '../data/content';
 
@@ -26,11 +26,10 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const navLinks = [
     { id: 'packages', label: 'باقات العمرة' },
-    { id: 'routes', label: 'مسارات الرحلات' },
-    { id: 'itinerary', label: 'برنامج 15 يومًا' },
-    { id: 'seerah-guide', label: 'مرشد السيرة ✨' },
-    { id: 'landmarks', label: 'معالم ومزارات' },
+    { id: 'routes', label: 'مسار الرحلة' },
+    { id: 'landmarks', label: 'المزارات والمعالم' },
     { id: 'features', label: 'مميزات الرحلة' },
+    { id: 'seerah-guide', label: 'مرشد السيرة النبوية' },
     { id: 'guide', label: 'دليل المعتمر' },
     { id: 'booking', label: 'حجز واستفسار' },
   ];
@@ -87,7 +86,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               className="hidden sm:inline-flex items-center gap-2 px-3.5 py-2 text-xs md:text-sm font-bold text-[#0c3227] bg-[#f2ecdc] hover:bg-[#e8dfcb] border border-[#d8cdb5] rounded-lg transition-all"
               title="اتصال داخل المملكة العربية السعودية"
             >
-              <Phone className="w-3.5 h-3.5 text-[#0c3227]" />
+              <PhoneCall size={16} weight="bold" className="text-[#0c3227]" />
               <span className="hidden xl:inline">اتصال السعودية:</span>
               <span dir="ltr">{SITE_CONFIG.ksaPhone}</span>
             </a>
@@ -99,7 +98,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-4 py-2 text-xs md:text-sm font-bold text-white bg-[#0c3227] hover:bg-[#07241c] rounded-lg shadow-sm transition-all"
             >
-              <MessageSquare className="w-4 h-4 text-[#e5c158]" />
+              <WhatsappLogo size={18} weight="fill" className="text-[#25D366]" />
               <span className="hidden sm:inline">استفسار واتساب</span>
               <span className="sm:hidden">واتساب</span>
             </a>
@@ -110,7 +109,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               className="lg:hidden p-2 text-[#0c3227] hover:bg-[#f0ebd9] rounded-lg transition-colors focus:outline-none"
               aria-label="فتح القائمة الرئيسية"
             >
-              <Menu className="w-6 h-6" />
+              <List size={24} weight="bold" />
             </button>
           </div>
         </div>

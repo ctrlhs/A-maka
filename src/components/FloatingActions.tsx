@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MessageSquare, Phone, ArrowUp } from 'lucide-react';
+import { WhatsappLogo, Phone, ArrowUp } from '@phosphor-icons/react';
 import { SITE_CONFIG, buildQuickWhatsAppUrl } from '../data/content';
 
 export const FloatingActions: React.FC = () => {
@@ -23,21 +23,21 @@ export const FloatingActions: React.FC = () => {
       {showScrollTop && (
         <button
           onClick={scrollToTop}
-          className="w-10 h-10 rounded-full bg-white/90 text-[#0c3227] shadow-lg border border-[#ded5c2] flex items-center justify-center hover:bg-[#0c3227] hover:text-white transition-all transform hover:scale-110"
+          className="w-9 h-9 rounded-full bg-white/95 text-[#0c3227] shadow-md border border-[#ded5c2] flex items-center justify-center hover:bg-[#0c3227] hover:text-white transition-all transform hover:scale-105"
           aria-label="العودة لأعلى الصفحة"
         >
-          <ArrowUp className="w-4 h-4" />
+          <ArrowUp size={16} weight="bold" />
         </button>
       )}
 
       {/* Saudi Call Float on Mobile/Tablet */}
       <a
         href={`tel:${SITE_CONFIG.ksaPhoneTel}`}
-        className="md:hidden w-11 h-11 rounded-full bg-[#0c3227] text-white shadow-xl flex items-center justify-center hover:bg-[#07241c] transition-all transform active:scale-95"
+        className="md:hidden w-10 h-10 rounded-full bg-[#0c3227] text-white shadow-lg flex items-center justify-center hover:bg-[#07241c] transition-all transform active:scale-95"
         title="اتصال داخل السعودية"
         aria-label="اتصال بالسعودية"
       >
-        <Phone className="w-5 h-5 text-[#f5d77f]" />
+        <Phone size={18} weight="bold" className="text-[#f5d77f]" />
       </a>
 
       {/* Floating WhatsApp CTA */}
@@ -48,13 +48,13 @@ export const FloatingActions: React.FC = () => {
         className="group relative flex items-center justify-center"
         aria-label="استفسار واتساب مصر"
       >
-        <div className="w-13 h-13 rounded-full bg-[#25D366] text-white shadow-2xl flex items-center justify-center hover:bg-[#20ba59] transition-all transform group-hover:scale-110 active:scale-95">
-          <MessageSquare className="w-6 h-6 fill-white" />
+        <div className="w-12 h-12 rounded-full bg-[#25D366] text-white shadow-xl flex items-center justify-center hover:bg-[#20ba59] transition-all transform group-hover:scale-105 active:scale-95">
+          <WhatsappLogo size={28} weight="fill" />
         </div>
 
         {/* Tooltip on hover */}
-        <span className="hidden lg:block absolute left-full ml-3 px-3 py-1.5 bg-[#0c3227] text-white text-xs font-bold rounded-lg whitespace-nowrap shadow-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-          واتساب مصر: {SITE_CONFIG.whatsappEgypt}
+        <span className="hidden lg:block absolute left-full ml-3 px-3 py-1 bg-[#0c3227] text-white text-xs font-bold rounded-lg whitespace-nowrap shadow-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+          واتساب: {SITE_CONFIG.whatsappEgypt}
         </span>
       </a>
     </div>
