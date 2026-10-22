@@ -6,6 +6,7 @@ import { AboutSection } from './components/AboutSection';
 import { PackagesSection } from './components/PackagesSection';
 import { RoutesSection } from './components/RoutesSection';
 import { LandmarksSection } from './components/LandmarksSection';
+import { GallerySection } from './components/GallerySection';
 import { FeaturesSection } from './components/FeaturesSection';
 import { SeerahSection } from './components/seerah/SeerahSection';
 import { PilgrimGuide } from './components/PilgrimGuide';
@@ -31,7 +32,7 @@ export function App() {
   // Track active section on scroll
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['packages', 'routes', 'landmarks', 'features', 'seerah-guide', 'guide', 'booking'];
+      const sections = ['packages', 'routes', 'landmarks', 'gallery', 'features', 'seerah-guide', 'guide', 'booking'];
       const scrollPosition = window.scrollY + 200;
 
       for (const sectionId of sections) {
@@ -111,7 +112,10 @@ export function App() {
         {/* 5. Holy Landmarks Gallery */}
         <LandmarksSection />
 
-        {/* 6. Why Choose Us / Features */}
+        {/* 6. Trip Gallery & Rawdah Certificates */}
+        <GallerySection />
+
+        {/* 7. Why Choose Us / Features */}
         <FeaturesSection />
 
         {/* 7. Seerah Guide (مرشد السيرة النبوية) */}

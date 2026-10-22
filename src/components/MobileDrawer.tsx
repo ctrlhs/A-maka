@@ -23,6 +23,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
     { id: 'packages', label: 'باقات العمرة' },
     { id: 'routes', label: 'مسار الرحلة من أسوان' },
     { id: 'landmarks', label: 'المزارات والمعالم التاريخية' },
+    { id: 'gallery', label: 'معرض الصور وشهادات الروضة' },
     { id: 'features', label: 'مميزات الرحلة' },
     { id: 'seerah-guide', label: 'مرشد السيرة النبوية' },
     { id: 'guide', label: 'دليل المعتمر' },

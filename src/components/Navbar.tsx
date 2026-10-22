@@ -28,6 +28,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'packages', label: 'باقات العمرة' },
     { id: 'routes', label: 'مسار الرحلة' },
     { id: 'landmarks', label: 'المزارات والمعالم' },
+    { id: 'gallery', label: 'معرض الرحلة والشهادات' },
     { id: 'features', label: 'مميزات الرحلة' },
     { id: 'seerah-guide', label: 'مرشد السيرة النبوية' },
     { id: 'guide', label: 'دليل المعتمر' },

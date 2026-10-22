@@ -57,6 +57,14 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </li>
               <li>
                 <button
+                  onClick={() => onNavigate('gallery')}
+                  className="hover:text-[#f5d77f] transition-colors"
+                >
+                  معرض الصور والشهادات
+                </button>
+              </li>
+              <li>
+                <button
                   onClick={() => onNavigate('features')}
                   className="hover:text-[#f5d77f] transition-colors"
                 >
