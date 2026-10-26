@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { LockedScreen } from './components/LockedScreen';
 import { Navbar } from './components/Navbar';
 import { MobileDrawer } from './components/MobileDrawer';
 import { Hero } from './components/Hero';
@@ -15,7 +16,14 @@ import { Footer } from './components/Footer';
 import { FloatingActions } from './components/FloatingActions';
 import type { PackageItem } from './types';
 
+// Set to true to display the locked poster screen
+const IS_LOCKED = true;
+
 export function App() {
+  if (IS_LOCKED) {
+    return <LockedScreen />;
+  }
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('packages');
   const [selectedRoute, setSelectedRoute] = useState('مسار رحلة العمرة من أسوان إلى المملكة (15 يومًا)');
