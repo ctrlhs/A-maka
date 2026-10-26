@@ -1,6 +1,6 @@
 import React from 'react';
-import { CalendarBlank, ShieldCheck, MapPin, ArrowLeft, WhatsappLogo } from '@phosphor-icons/react';
-import { SITE_CONFIG, buildQuickWhatsAppUrl } from '../data/content';
+import { CalendarBlank, ShieldCheck, MapPin, ArrowLeft } from '@phosphor-icons/react';
+import { SITE_CONFIG } from '../data/content';
 
 interface HeroProps {
   onExplorePackages: () => void;
@@ -45,7 +45,7 @@ export const Hero: React.FC<HeroProps> = ({ onExplorePackages, onBookNow, onView
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-14">
           <button
             onClick={onBookNow}
-            className="w-full sm:w-auto px-8 py-3.5 bg-gradient-to-l from-[#d4af37] via-[#e5c158] to-[#c59b27] hover:from-[#c59b27] hover:to-[#b3881e] text-[#0a261e] font-black text-sm sm:text-base rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 active:scale-95"
+            className="w-full sm:w-auto px-8 py-3.5 bg-gradient-to-l from-[#d4af37] via-[#e5c158] to-[#c59b27] hover:from-[#c59b27] hover:to-[#b3881e] text-[#0a261e] font-black text-sm sm:text-base rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 active:scale-95 cursor-pointer"
           >
             <span>احجز رحلتك الآن</span>
             <ArrowLeft size={18} weight="bold" />
@@ -53,20 +53,10 @@ export const Hero: React.FC<HeroProps> = ({ onExplorePackages, onBookNow, onView
 
           <button
             onClick={onExplorePackages}
-            className="w-full sm:w-auto px-6 py-3.5 bg-white/10 hover:bg-white/20 text-white font-bold text-sm sm:text-base rounded-xl border border-white/20 transition-all flex items-center justify-center"
+            className="w-full sm:w-auto px-6 py-3.5 bg-white/10 hover:bg-white/20 text-white font-bold text-sm sm:text-base rounded-xl border border-white/20 transition-all flex items-center justify-center cursor-pointer"
           >
-            <span>استعراض الباقات</span>
+            <span>استعراض باقات العمرة</span>
           </button>
-
-          <a
-            href={buildQuickWhatsAppUrl()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full sm:w-auto px-6 py-3.5 bg-[#0c3227] hover:bg-[#07241c] text-white font-bold text-sm sm:text-base rounded-xl border border-[#d4af37]/40 shadow-md transition-all flex items-center justify-center gap-2"
-          >
-            <WhatsappLogo size={18} weight="fill" className="text-[#25D366]" />
-            <span>استفسار واتساب</span>
-          </a>
         </div>
 
         {/* Stats Strip under Hero */}

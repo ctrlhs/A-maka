@@ -1,6 +1,6 @@
 import React from 'react';
-import { UserCheck, CheckCircle, WhatsappLogo, PhoneCall } from '@phosphor-icons/react';
-import { SITE_CONFIG, buildQuickWhatsAppUrl } from '../data/content';
+import { UserCheck, CheckCircle } from '@phosphor-icons/react';
+import { SITE_CONFIG } from '../data/content';
 
 export const AboutSection: React.FC = () => {
   return (
@@ -88,25 +88,19 @@ export const AboutSection: React.FC = () => {
               </div>
             </div>
 
-            {/* Quick CTAs */}
-            <div className="flex flex-wrap items-center gap-3 pt-3">
-              <a
-                href={buildQuickWhatsAppUrl('استفسار عن الرحلة')}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-5 py-2.5 bg-[#0c3227] hover:bg-[#07241c] text-white font-bold text-xs sm:text-sm rounded-xl shadow-xs transition-all flex items-center gap-2"
-              >
-                <WhatsappLogo size={18} weight="fill" className="text-[#25D366]" />
-                <span>تواصل مع المشرفة أسماء عبدالكريم</span>
-              </a>
-
-              <a
-                href={`tel:${SITE_CONFIG.ksaPhoneTel}`}
-                className="px-4 py-2.5 bg-white hover:bg-[#f6f2e8] text-[#0c3227] font-bold text-xs sm:text-sm rounded-xl border border-[#d8cfbe] shadow-xs transition-all flex items-center gap-2"
-              >
-                <PhoneCall size={16} weight="bold" className="text-[#b3881e]" />
-                <span>اتصال داخل السعودية</span>
-              </a>
+            {/* Professional Saudi Direct Line Note */}
+            <div className="pt-2">
+              <div className="inline-flex items-center gap-2.5 px-4 py-2 bg-white rounded-xl border border-[#e8dfce] shadow-xs text-xs text-[#2c3d34]">
+                <span className="text-base">🇸🇦</span>
+                <span>هاتف التنسيق المباشر أثناء التواجد بالمملكة:</span>
+                <a
+                  href={`tel:${SITE_CONFIG.ksaPhoneTel}`}
+                  className="font-mono font-bold text-[#8d6919] hover:underline"
+                  dir="ltr"
+                >
+                  {SITE_CONFIG.ksaPhone}
+                </a>
+              </div>
             </div>
           </div>
         </div>

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import {
   Phone,
   User,
-  PhoneCall,
   MapPin,
   Package,
   ForkKnife,
@@ -341,23 +340,15 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                 </div>
               )}
 
-              {/* Submit Buttons */}
-              <div className="flex flex-col sm:flex-row items-center gap-3 pt-3 border-t border-[#eee8dc]">
+              {/* Submit Button */}
+              <div className="pt-3 border-t border-[#eee8dc]">
                 <button
                   type="submit"
-                  className="w-full sm:flex-1 py-3 px-5 bg-gradient-to-l from-[#d4af37] via-[#e5c158] to-[#c59b27] hover:from-[#c59b27] hover:to-[#b3881e] text-[#0c3227] font-black text-xs sm:text-sm rounded-xl shadow-xs transition-all flex items-center justify-center gap-2"
+                  className="w-full py-3 px-5 bg-gradient-to-l from-[#d4af37] via-[#e5c158] to-[#c59b27] hover:from-[#c59b27] hover:to-[#b3881e] text-[#0c3227] font-black text-xs sm:text-sm rounded-xl shadow-xs transition-all flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <WhatsappLogo size={18} weight="fill" />
-                  <span>إرسال الاستفسار عبر واتساب</span>
+                  <span>إرسال الاستفسار وتأكيد تفاصيل الرحلة</span>
                 </button>
-
-                <a
-                  href={`tel:${SITE_CONFIG.ksaPhoneTel}`}
-                  className="w-full sm:w-auto py-3 px-5 bg-[#0c3227] hover:bg-[#07241c] text-white font-bold text-xs sm:text-sm rounded-xl transition-all flex items-center justify-center gap-2 whitespace-nowrap"
-                >
-                  <PhoneCall size={16} weight="bold" className="text-[#e5c158]" />
-                  <span>اتصال داخل السعودية</span>
-                </a>
               </div>
 
               <p className="text-[11px] text-[#798880] text-center">
@@ -395,15 +386,23 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                   </a>
                 </div>
 
-                <div>
-                  <span className="block text-[11px] text-[#9bb0a7] mb-0.5">اتصال داخل السعودية:</span>
+                <div className="p-3 rounded-xl bg-[#09261d] border border-[#1d4c3c]">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-[11px] font-bold text-[#f5d77f] flex items-center gap-1.5">
+                      <span>🇸🇦</span>
+                      <span>هاتف المشرفة المباشر بالمملكة:</span>
+                    </span>
+                    <span className="text-[10px] bg-[#164939] text-[#9bb0a7] px-2 py-0.5 rounded-full">
+                      للمتواجدين بالسعودية
+                    </span>
+                  </div>
                   <a
                     href={`tel:${SITE_CONFIG.ksaPhoneTel}`}
-                    className="font-bold text-white hover:underline flex items-center gap-1.5"
+                    className="font-mono text-sm font-black text-white hover:text-[#f5d77f] transition-colors flex items-center justify-between pt-0.5"
                     dir="ltr"
                   >
-                    <Phone size={14} weight="bold" className="text-[#e5c158]" />
                     <span>{SITE_CONFIG.ksaPhone}</span>
+                    <span className="text-[10px] text-[#9bb0a7] font-sans">اتصال مباشر</span>
                   </a>
                 </div>
 

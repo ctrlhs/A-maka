@@ -1,6 +1,6 @@
 import React from 'react';
-import { ShieldCheck, Bus, Buildings, UsersThree, PhoneCall, WhatsappLogo } from '@phosphor-icons/react';
-import { SITE_CONFIG, buildQuickWhatsAppUrl } from '../data/content';
+import { ShieldCheck, Bus, Buildings, UsersThree, ArrowLeft } from '@phosphor-icons/react';
+import { SITE_CONFIG } from '../data/content';
 
 export const FeaturesSection: React.FC = () => {
   return (
@@ -74,23 +74,13 @@ export const FeaturesSection: React.FC = () => {
             </p>
           </div>
 
-          <div className="flex items-center gap-3 w-full sm:w-auto">
+          <div className="w-full sm:w-auto">
             <a
-              href={buildQuickWhatsAppUrl()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 sm:flex-initial px-5 py-2.5 bg-gradient-to-l from-[#d4af37] to-[#e5c158] hover:from-[#c59b27] hover:to-[#d4af37] text-[#0a2c22] font-bold text-xs sm:text-sm rounded-xl transition-all flex items-center justify-center gap-2 whitespace-nowrap"
+              href="#booking"
+              className="w-full sm:w-auto px-6 py-3 bg-gradient-to-l from-[#d4af37] to-[#e5c158] hover:from-[#c59b27] hover:to-[#b3881e] text-[#0a2c22] font-black text-xs sm:text-sm rounded-xl transition-all flex items-center justify-center gap-2 whitespace-nowrap shadow-md cursor-pointer"
             >
-              <WhatsappLogo size={18} weight="fill" />
-              <span>استفسار واتساب</span>
-            </a>
-
-            <a
-              href={`tel:${SITE_CONFIG.ksaPhoneTel}`}
-              className="px-4 py-2.5 bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm rounded-xl border border-white/20 transition-all flex items-center justify-center gap-2 whitespace-nowrap"
-            >
-              <PhoneCall size={16} weight="bold" className="text-[#f5d77f]" />
-              <span>اتصال السعودية</span>
+              <span>الانتقال لنموذج الحجز والاستفسار</span>
+              <ArrowLeft size={16} weight="bold" />
             </a>
           </div>
         </div>

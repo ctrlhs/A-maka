@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, WhatsappLogo, MapPin, Heart } from '@phosphor-icons/react';
+import { WhatsappLogo, MapPin, Heart } from '@phosphor-icons/react';
 import { KaabaLogo } from './KaabaLogo';
 import { SITE_CONFIG, buildQuickWhatsAppUrl } from '../data/content';
 
@@ -123,16 +123,19 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
             {/* Saudi Call Box */}
             <div className="p-3 rounded-xl bg-white/5 border border-white/10">
-              <span className="block text-[11px] text-[#9bb0a7] mb-0.5">
-                الاتصال داخل السعودية:
-              </span>
+              <div className="flex items-center gap-1.5 mb-1">
+                <span className="text-sm">🇸🇦</span>
+                <span className="text-[11px] text-[#f5d77f] font-bold">
+                  هاتف المملكة المباشر:
+                </span>
+              </div>
               <a
                 href={`tel:${SITE_CONFIG.ksaPhoneTel}`}
-                className="text-xs sm:text-sm font-bold text-white hover:underline flex items-center gap-2"
+                className="text-xs sm:text-sm font-mono font-bold text-white hover:text-[#f5d77f] flex items-center justify-between"
                 dir="ltr"
               >
-                <Phone size={14} weight="bold" className="text-[#e5c158]" />
                 <span>{SITE_CONFIG.ksaPhone}</span>
+                <span className="text-[10px] text-[#9bb0a7] font-sans">طوارئ وتنسيق</span>
               </a>
             </div>
 

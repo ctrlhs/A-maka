@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { List, PhoneCall, WhatsappLogo } from '@phosphor-icons/react';
+import { List } from '@phosphor-icons/react';
 import { KaabaLogo } from './KaabaLogo';
-import { SITE_CONFIG, buildQuickWhatsAppUrl } from '../data/content';
+import { SITE_CONFIG } from '../data/content';
 
 interface NavbarProps {
   onOpenMobileMenu: () => void;
@@ -79,30 +79,26 @@ export const Navbar: React.FC<NavbarProps> = ({
             })}
           </nav>
 
-          {/* Left: Contact CTAs & Actions */}
+          {/* Left: Professional Saudi Line & Booking Action */}
           <div className="flex items-center gap-2 sm:gap-3">
-            {/* Call inside KSA Button */}
+            {/* Professional Saudi Contact Badge */}
             <a
               href={`tel:${SITE_CONFIG.ksaPhoneTel}`}
-              className="hidden sm:inline-flex items-center gap-2 px-3.5 py-2 text-xs md:text-sm font-bold text-[#0c3227] bg-[#f2ecdc] hover:bg-[#e8dfcb] border border-[#d8cdb5] rounded-lg transition-all"
-              title="اتصال داخل المملكة العربية السعودية"
+              className="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-bold text-[#0c3227] bg-[#f4eee2] hover:bg-[#eae1ce] border border-[#d8cfbe] rounded-full transition-all"
+              title="رقم التواصل المباشر داخل المملكة العربية السعودية"
             >
-              <PhoneCall size={16} weight="bold" className="text-[#0c3227]" />
-              <span className="hidden xl:inline">اتصال السعودية:</span>
-              <span dir="ltr">{SITE_CONFIG.ksaPhone}</span>
+              <span className="text-sm">🇸🇦</span>
+              <span className="hidden md:inline text-[11px] text-[#6e5d32]">هاتف المملكة:</span>
+              <span dir="ltr" className="font-mono text-xs font-bold">{SITE_CONFIG.ksaPhone}</span>
             </a>
 
-            {/* WhatsApp CTA Button */}
-            <a
-              href={buildQuickWhatsAppUrl()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 text-xs md:text-sm font-bold text-white bg-[#0c3227] hover:bg-[#07241c] rounded-lg shadow-sm transition-all"
+            {/* Main Action: Book / Inquire */}
+            <button
+              onClick={() => onNavigate('booking')}
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs sm:text-sm font-bold text-white bg-[#0c3227] hover:bg-[#07241c] rounded-lg shadow-xs transition-all cursor-pointer"
             >
-              <WhatsappLogo size={18} weight="fill" className="text-[#25D366]" />
-              <span className="hidden sm:inline">استفسار واتساب</span>
-              <span className="sm:hidden">واتساب</span>
-            </a>
+              <span>احجز الآن</span>
+            </button>
 
             {/* Mobile Hamburger Toggle */}
             <button
